@@ -1,0 +1,85 @@
+﻿@model List<ZMoec.Models.UserViewModel>
+@{
+    ViewBag.Title = "Users as a " + ViewBag.roleName;
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("AddUserToRole", "ZMRoleMaintenance", FormMethod.Post, new { @class = "form", style = "display:inline;" }))
+{
+    @Html.Hidden("roleName", (object)ViewBag.roleName)
+    <span>Users:</span>
+    @Html.DropDownList("userId", null, htmlAttributes: new { @class = "form-control", style = "display:inline;" })
+    <button type="submit" style="display:inline;" class="btn btn-primary"><i class="glyphicon-plus"></i> Add to @ViewBag.roleName</button>
+}
+<table class="table table-bordered table-striped top-buffer">
+    <tr>
+        <th>
+            Username
+        </th>
+
+        <th>
+            Email
+        </th>
+        <th>
+            IsLockedOut
+        </th>
+        <th>
+            Is Authorized Locally
+        </th>
+
+
+        <th></th>
+    </tr>
+    @if (Model.Count() > 0)
+    {
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsLockedOut)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsAuthorizedLocally)
+                </td>
+                <td>
+                    @{
+
+            if (!(ViewBag.currentUserRoles.Contains(ViewBag.roleName) && item.UserId == ViewBag.currentUserId))
+            {
+                @Html.ActionLink("Remove from Role", "RemoveUserFromRole", new { id = item.UserId, roleName = ViewBag.roleName })
+            }
+            else
+            {
+                <span>You cannot remove yourself from role</span>
+            }
+
+
+
+
+                    }
+
+                </td>
+
+
+            </tr>
+        }
+    }
+    else
+    {
+        <tr><td colspan="4" style="text-align:center;">No data to display</td></tr>
+    }
+
+
+</table>
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+

@@ -1,0 +1,5 @@
+G:\Semester 2\Course\PROG2230-15W-Programming Microsoft Web Techn\Assignments\Assignment7\ZMoec\ZMoec\ZMClassLibrary\bin\Release\ZMClassLibrary.dll
+G:\Semester 2\Course\PROG2230-15W-Programming Microsoft Web Techn\Assignments\Assignment7\ZMoec\ZMoec\ZMClassLibrary\bin\Release\ZMClassLibrary.pdb
+G:\Semester 2\Course\PROG2230-15W-Programming Microsoft Web Techn\Assignments\Assignment7\ZMoec\ZMoec\ZMClassLibrary\obj\Release\ZMClassLibrary.csprojResolveAssemblyReference.cache
+G:\Semester 2\Course\PROG2230-15W-Programming Microsoft Web Techn\Assignments\Assignment7\ZMoec\ZMoec\ZMClassLibrary\obj\Release\ZMClassLibrary.dll
+G:\Semester 2\Course\PROG2230-15W-Programming Microsoft Web Techn\Assignments\Assignment7\ZMoec\ZMoec\ZMClassLibrary\obj\Release\ZMClassLibrary.pdb

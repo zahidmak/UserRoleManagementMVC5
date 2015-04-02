@@ -1,0 +1,305 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="OECModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="country">
+    <Key>
+      <PropertyRef Name="countryCode" />
+    </Key>
+    <Property Name="countryCode" Type="String" MaxLength="2" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="postalPattern" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="phonePattern" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="provinces" Relationship="Self.FK_province_country" FromRole="country" ToRole="province" />
+  </EntityType>
+  <EntityType Name="crop">
+    <Key>
+      <PropertyRef Name="cropId" />
+    </Key>
+    <Property Name="cropId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="image" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="varieties" Relationship="Self.cropVariety_FK00" FromRole="crop" ToRole="variety" />
+  </EntityType>
+  <EntityType Name="farm">
+    <Key>
+      <PropertyRef Name="farmId" />
+    </Key>
+    <Property Name="farmId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="town" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="county" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="provinceCode" Type="String" MaxLength="2" FixedLength="true" Unicode="true" />
+    <Property Name="postalCode" Type="String" MaxLength="7" FixedLength="true" Unicode="true" />
+    <Property Name="homePhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="cellPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="directions" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="dateJoined" Type="DateTime" Precision="3" />
+    <Property Name="lastContactDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="province" Relationship="Self.FK_farm_province" FromRole="farm" ToRole="province" />
+    <NavigationProperty Name="plots" Relationship="Self.plots_FK00" FromRole="farm" ToRole="plot" />
+  </EntityType>
+  <EntityType Name="fertilizer">
+    <Key>
+      <PropertyRef Name="fertilizerName" />
+    </Key>
+    <Property Name="fertilizerName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="OECProduct" Type="Boolean" Nullable="false" />
+    <Property Name="liquid" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="treatmentFertilizers" Relationship="Self.FK_treatmentFertilizer_fertilizer" FromRole="fertilizer" ToRole="treatmentFertilizer" />
+  </EntityType>
+  <EntityType Name="plot">
+    <Key>
+      <PropertyRef Name="plotId" />
+    </Key>
+    <Property Name="plotId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="farmId" Type="Int32" />
+    <Property Name="varietyId" Type="Int32" />
+    <Property Name="datePlanted" Type="DateTime" Precision="3" />
+    <Property Name="dateHarvested" Type="DateTime" Precision="3" />
+    <Property Name="plantingRate" Type="Int32" />
+    <Property Name="plantingRateByPounds" Type="Boolean" Nullable="false" />
+    <Property Name="rowWidth" Type="Int32" />
+    <Property Name="patternRepeats" Type="Int32" />
+    <Property Name="organicMatter" Type="Single" />
+    <Property Name="bicarbP" Type="Single" />
+    <Property Name="potassium" Type="Single" />
+    <Property Name="magnesium" Type="Single" />
+    <Property Name="calcium" Type="Single" />
+    <Property Name="pHSoil" Type="Single" />
+    <Property Name="pHBuffer" Type="Single" />
+    <Property Name="CEC" Type="Single" />
+    <Property Name="percentBaseSaturationK" Type="Single" />
+    <Property Name="percentBaseSaturationMg" Type="Single" />
+    <Property Name="percentBaseSaturationCa" Type="Single" />
+    <Property Name="percentBaseSaturationH" Type="Single" />
+    <Property Name="comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="farm" Relationship="Self.plots_FK00" FromRole="plot" ToRole="farm" />
+    <NavigationProperty Name="treatments" Relationship="Self.FK_treatment_plot" FromRole="plot" ToRole="treatment" />
+    <NavigationProperty Name="variety" Relationship="Self.plots_FK01" FromRole="plot" ToRole="variety" />
+  </EntityType>
+  <EntityType Name="province">
+    <Key>
+      <PropertyRef Name="provinceCode" />
+    </Key>
+    <Property Name="provinceCode" Type="String" MaxLength="2" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="countryCode" Type="String" MaxLength="2" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="country" Relationship="Self.FK_province_country" FromRole="province" ToRole="country" />
+    <NavigationProperty Name="farms" Relationship="Self.FK_farm_province" FromRole="province" ToRole="farm" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="treatment">
+    <Key>
+      <PropertyRef Name="treatmentId" />
+    </Key>
+    <Property Name="treatmentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="plotId" Type="Int32" Nullable="false" />
+    <Property Name="moisture" Type="Single" />
+    <Property Name="yield" Type="Single" />
+    <Property Name="weight" Type="Single" />
+    <NavigationProperty Name="plot" Relationship="Self.FK_treatment_plot" FromRole="treatment" ToRole="plot" />
+    <NavigationProperty Name="treatmentFertilizers" Relationship="Self.FK_treatmentFertilizer_treatment" FromRole="treatment" ToRole="treatmentFertilizer" />
+  </EntityType>
+  <EntityType Name="treatmentFertilizer">
+    <Key>
+      <PropertyRef Name="treatmentFertilizerId" />
+    </Key>
+    <Property Name="treatmentFertilizerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="treatmentId" Type="Int32" />
+    <Property Name="fertilizerName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="ratePerAcre" Type="Single" />
+    <Property Name="rateMetric" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="fertilizer" Relationship="Self.FK_treatmentFertilizer_fertilizer" FromRole="treatmentFertilizer" ToRole="fertilizer" />
+    <NavigationProperty Name="treatment" Relationship="Self.FK_treatmentFertilizer_treatment" FromRole="treatmentFertilizer" ToRole="treatment" />
+  </EntityType>
+  <EntityType Name="variety">
+    <Key>
+      <PropertyRef Name="varietyId" />
+    </Key>
+    <Property Name="varietyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cropId" Type="Int32" />
+    <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="crop" Relationship="Self.cropVariety_FK00" FromRole="variety" ToRole="crop" />
+    <NavigationProperty Name="plots" Relationship="Self.plots_FK01" FromRole="variety" ToRole="plot" />
+  </EntityType>
+  <Association Name="FK_province_country">
+    <End Role="country" Type="Self.country" Multiplicity="0..1" />
+    <End Role="province" Type="Self.province" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="country">
+        <PropertyRef Name="countryCode" />
+      </Principal>
+      <Dependent Role="province">
+        <PropertyRef Name="countryCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="cropVariety_FK00">
+    <End Role="crop" Type="Self.crop" Multiplicity="0..1" />
+    <End Role="variety" Type="Self.variety" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="crop">
+        <PropertyRef Name="cropId" />
+      </Principal>
+      <Dependent Role="variety">
+        <PropertyRef Name="cropId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_farm_province">
+    <End Role="province" Type="Self.province" Multiplicity="0..1" />
+    <End Role="farm" Type="Self.farm" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="province">
+        <PropertyRef Name="provinceCode" />
+      </Principal>
+      <Dependent Role="farm">
+        <PropertyRef Name="provinceCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="plots_FK00">
+    <End Role="farm" Type="Self.farm" Multiplicity="0..1" />
+    <End Role="plot" Type="Self.plot" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="farm">
+        <PropertyRef Name="farmId" />
+      </Principal>
+      <Dependent Role="plot">
+        <PropertyRef Name="farmId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_treatmentFertilizer_fertilizer">
+    <End Role="fertilizer" Type="Self.fertilizer" Multiplicity="0..1" />
+    <End Role="treatmentFertilizer" Type="Self.treatmentFertilizer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="fertilizer">
+        <PropertyRef Name="fertilizerName" />
+      </Principal>
+      <Dependent Role="treatmentFertilizer">
+        <PropertyRef Name="fertilizerName" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_treatment_plot">
+    <End Role="plot" Type="Self.plot" Multiplicity="1" />
+    <End Role="treatment" Type="Self.treatment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="plot">
+        <PropertyRef Name="plotId" />
+      </Principal>
+      <Dependent Role="treatment">
+        <PropertyRef Name="plotId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="plots_FK01">
+    <End Role="variety" Type="Self.variety" Multiplicity="0..1" />
+    <End Role="plot" Type="Self.plot" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="variety">
+        <PropertyRef Name="varietyId" />
+      </Principal>
+      <Dependent Role="plot">
+        <PropertyRef Name="varietyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_treatmentFertilizer_treatment">
+    <End Role="treatment" Type="Self.treatment" Multiplicity="0..1" />
+    <End Role="treatmentFertilizer" Type="Self.treatmentFertilizer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="treatment">
+        <PropertyRef Name="treatmentId" />
+      </Principal>
+      <Dependent Role="treatmentFertilizer">
+        <PropertyRef Name="treatmentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="OECContext" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="countries" EntityType="Self.country" />
+    <EntitySet Name="crops" EntityType="Self.crop" />
+    <EntitySet Name="farms" EntityType="Self.farm" />
+    <EntitySet Name="fertilizers" EntityType="Self.fertilizer" />
+    <EntitySet Name="plots" EntityType="Self.plot" />
+    <EntitySet Name="provinces" EntityType="Self.province" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="treatments" EntityType="Self.treatment" />
+    <EntitySet Name="treatmentFertilizers" EntityType="Self.treatmentFertilizer" />
+    <EntitySet Name="varieties" EntityType="Self.variety" />
+    <AssociationSet Name="FK_province_country" Association="Self.FK_province_country">
+      <End Role="country" EntitySet="countries" />
+      <End Role="province" EntitySet="provinces" />
+    </AssociationSet>
+    <AssociationSet Name="cropVariety_FK00" Association="Self.cropVariety_FK00">
+      <End Role="crop" EntitySet="crops" />
+      <End Role="variety" EntitySet="varieties" />
+    </AssociationSet>
+    <AssociationSet Name="FK_farm_province" Association="Self.FK_farm_province">
+      <End Role="province" EntitySet="provinces" />
+      <End Role="farm" EntitySet="farms" />
+    </AssociationSet>
+    <AssociationSet Name="plots_FK00" Association="Self.plots_FK00">
+      <End Role="farm" EntitySet="farms" />
+      <End Role="plot" EntitySet="plots" />
+    </AssociationSet>
+    <AssociationSet Name="FK_treatmentFertilizer_fertilizer" Association="Self.FK_treatmentFertilizer_fertilizer">
+      <End Role="fertilizer" EntitySet="fertilizers" />
+      <End Role="treatmentFertilizer" EntitySet="treatmentFertilizers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_treatment_plot" Association="Self.FK_treatment_plot">
+      <End Role="plot" EntitySet="plots" />
+      <End Role="treatment" EntitySet="treatments" />
+    </AssociationSet>
+    <AssociationSet Name="plots_FK01" Association="Self.plots_FK01">
+      <End Role="variety" EntitySet="varieties" />
+      <End Role="plot" EntitySet="plots" />
+    </AssociationSet>
+    <AssociationSet Name="FK_treatmentFertilizer_treatment" Association="Self.FK_treatmentFertilizer_treatment">
+      <End Role="treatment" EntitySet="treatments" />
+      <End Role="treatmentFertilizer" EntitySet="treatmentFertilizers" />
+    </AssociationSet>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+  </EntityContainer>
+</Schema>

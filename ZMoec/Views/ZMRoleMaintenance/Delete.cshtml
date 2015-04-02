@@ -1,0 +1,54 @@
+﻿@model List<ZMoec.Models.UserViewModel>
+@{
+    ViewBag.Title = "Delete Role - " + ViewBag.roleName;
+    using (Html.BeginForm(new { @class = "form-inline" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.Hidden("roleName", (object)ViewBag.roleName)
+        <div class="row">
+            <div class="alert alert-warning">
+                <h2>@ViewBag.Title</h2>
+                <span>Remove all users from @ViewBag.roleName</span>
+                @Html.CheckBox("removeAllUsersFromRole", (Model.Count() > 0) ? false : true)
+                <button type="submit" class="btn btn-primary pull-right" value="Delete"><i class="glyphicon glyphicon-trash"></i> Delete</button>
+            </div>
+        </div>
+
+    }
+}
+<h4>Users as a @ViewBag.roleName</h4>
+<table class="table table-striped table-bordered">
+    <tr>
+
+        <th>
+            Username
+        </th>
+
+        <th>
+            Email
+        </th>
+
+
+
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+
+
+
+        </tr>
+    }
+
+</table>
+

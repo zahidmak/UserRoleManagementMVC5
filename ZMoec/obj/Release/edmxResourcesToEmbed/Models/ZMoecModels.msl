@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="OECModelStoreContainer" CdmEntityContainer="OECContext">
+    <EntitySetMapping Name="countries">
+      <EntityTypeMapping TypeName="OECModel.country">
+        <MappingFragment StoreEntitySet="country">
+          <ScalarProperty Name="countryCode" ColumnName="countryCode" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="postalPattern" ColumnName="postalPattern" />
+          <ScalarProperty Name="phonePattern" ColumnName="phonePattern" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="crops">
+      <EntityTypeMapping TypeName="OECModel.crop">
+        <MappingFragment StoreEntitySet="crop">
+          <ScalarProperty Name="cropId" ColumnName="cropId" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="image" ColumnName="image" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="farms">
+      <EntityTypeMapping TypeName="OECModel.farm">
+        <MappingFragment StoreEntitySet="farm">
+          <ScalarProperty Name="farmId" ColumnName="farmId" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="town" ColumnName="town" />
+          <ScalarProperty Name="county" ColumnName="county" />
+          <ScalarProperty Name="provinceCode" ColumnName="provinceCode" />
+          <ScalarProperty Name="postalCode" ColumnName="postalCode" />
+          <ScalarProperty Name="homePhone" ColumnName="homePhone" />
+          <ScalarProperty Name="cellPhone" ColumnName="cellPhone" />
+          <ScalarProperty Name="directions" ColumnName="directions" />
+          <ScalarProperty Name="dateJoined" ColumnName="dateJoined" />
+          <ScalarProperty Name="lastContactDate" ColumnName="lastContactDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="fertilizers">
+      <EntityTypeMapping TypeName="OECModel.fertilizer">
+        <MappingFragment StoreEntitySet="fertilizer">
+          <ScalarProperty Name="fertilizerName" ColumnName="fertilizerName" />
+          <ScalarProperty Name="OECProduct" ColumnName="OECProduct" />
+          <ScalarProperty Name="liquid" ColumnName="liquid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="plots">
+      <EntityTypeMapping TypeName="OECModel.plot">
+        <MappingFragment StoreEntitySet="plot">
+          <ScalarProperty Name="plotId" ColumnName="plotId" />
+          <ScalarProperty Name="farmId" ColumnName="farmId" />
+          <ScalarProperty Name="varietyId" ColumnName="varietyId" />
+          <ScalarProperty Name="datePlanted" ColumnName="datePlanted" />
+          <ScalarProperty Name="dateHarvested" ColumnName="dateHarvested" />
+          <ScalarProperty Name="plantingRate" ColumnName="plantingRate" />
+          <ScalarProperty Name="plantingRateByPounds" ColumnName="plantingRateByPounds" />
+          <ScalarProperty Name="rowWidth" ColumnName="rowWidth" />
+          <ScalarProperty Name="patternRepeats" ColumnName="patternRepeats" />
+          <ScalarProperty Name="organicMatter" ColumnName="organicMatter" />
+          <ScalarProperty Name="bicarbP" ColumnName="bicarbP" />
+          <ScalarProperty Name="potassium" ColumnName="potassium" />
+          <ScalarProperty Name="magnesium" ColumnName="magnesium" />
+          <ScalarProperty Name="calcium" ColumnName="calcium" />
+          <ScalarProperty Name="pHSoil" ColumnName="pHSoil" />
+          <ScalarProperty Name="pHBuffer" ColumnName="pHBuffer" />
+          <ScalarProperty Name="CEC" ColumnName="CEC" />
+          <ScalarProperty Name="percentBaseSaturationK" ColumnName="percentBaseSaturationK" />
+          <ScalarProperty Name="percentBaseSaturationMg" ColumnName="percentBaseSaturationMg" />
+          <ScalarProperty Name="percentBaseSaturationCa" ColumnName="percentBaseSaturationCa" />
+          <ScalarProperty Name="percentBaseSaturationH" ColumnName="percentBaseSaturationH" />
+          <ScalarProperty Name="comments" ColumnName="comments" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="provinces">
+      <EntityTypeMapping TypeName="OECModel.province">
+        <MappingFragment StoreEntitySet="province">
+          <ScalarProperty Name="provinceCode" ColumnName="provinceCode" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="countryCode" ColumnName="countryCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="OECModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="treatments">
+      <EntityTypeMapping TypeName="OECModel.treatment">
+        <MappingFragment StoreEntitySet="treatment">
+          <ScalarProperty Name="treatmentId" ColumnName="treatmentId" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="plotId" ColumnName="plotId" />
+          <ScalarProperty Name="moisture" ColumnName="moisture" />
+          <ScalarProperty Name="yield" ColumnName="yield" />
+          <ScalarProperty Name="weight" ColumnName="weight" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="treatmentFertilizers">
+      <EntityTypeMapping TypeName="OECModel.treatmentFertilizer">
+        <MappingFragment StoreEntitySet="treatmentFertilizer">
+          <ScalarProperty Name="treatmentFertilizerId" ColumnName="treatmentFertilizerId" />
+          <ScalarProperty Name="treatmentId" ColumnName="treatmentId" />
+          <ScalarProperty Name="fertilizerName" ColumnName="fertilizerName" />
+          <ScalarProperty Name="ratePerAcre" ColumnName="ratePerAcre" />
+          <ScalarProperty Name="rateMetric" ColumnName="rateMetric" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="varieties">
+      <EntityTypeMapping TypeName="OECModel.variety">
+        <MappingFragment StoreEntitySet="variety">
+          <ScalarProperty Name="varietyId" ColumnName="varietyId" />
+          <ScalarProperty Name="cropId" ColumnName="cropId" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="OECModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="OECModel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="OECModel.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="OECModel.Store.sp_helpdiagramdefinition" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="OECModel.Store.sp_helpdiagrams" />
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="OECModel.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="OECModel.Store.sp_upgraddiagrams" />
+  </EntityContainerMapping>
+</Mapping>

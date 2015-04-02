@@ -1,0 +1,106 @@
+﻿@model ZMoec.Models.farm
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>farm</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.town)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.town)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.county)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.county)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.postalCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.postalCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.homePhone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.homePhone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cellPhone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cellPhone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.directions)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.directions)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dateJoined)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dateJoined)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.lastContactDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lastContactDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.province.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.province.name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.farmId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

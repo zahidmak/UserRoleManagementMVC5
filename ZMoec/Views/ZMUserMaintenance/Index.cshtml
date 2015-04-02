@@ -1,0 +1,74 @@
+﻿@model IEnumerable<ZMoec.Models.UserViewModel>
+@{
+    ViewBag.Title = "User List";
+}
+
+<h2>@ViewBag.Title</h2>
+<table class="table table-bordered table-striped">
+    <tr>
+        <th>
+            Username
+        </th>
+
+        <th>
+            Email
+        </th>
+        <th>
+            IsLockedOut
+        </th>
+        <th>
+            Is Authorized Locally
+        </th>
+
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsLockedOut)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsAuthorizedLocally)
+            </td>
+
+
+            <td>
+
+
+                @if (item.IsAdmin != true)
+                {
+                    if (item.IsLockedOut == true)
+                    {
+                        @Html.ActionLink("Unlock", "ToggleLock", new { id = item.UserId }) ;
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Lock", "ToggleLock", new { id = item.UserId }) ;
+                    }
+
+                    <span> |</span>
+                    @Html.ActionLink("Delete", "Delete", new { id = item.UserId }) <span>|</span>
+                    @Html.ActionLink("Reset Password", "ResetPassword", new { id = item.UserId })
+                }
+                else
+                {
+                    <span>No actions can be performed on Adminstrator</span>
+                }
+
+
+            </td>
+        </tr>
+    }
+
+</table>
+

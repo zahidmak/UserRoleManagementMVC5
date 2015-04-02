@@ -1,0 +1,48 @@
+﻿@model List<Microsoft.AspNet.Identity.EntityFramework.IdentityRole>
+@{
+    ViewBag.Title = "Role List";
+}
+
+<h2>@ViewBag.Title</h2>
+<div class="row text-center">
+    @using (Html.BeginForm("Create", "ZMRoleMaintenance", FormMethod.Post, new { @class = "form-inline" }))
+    {
+        <div class="form-group">
+
+            <input type="text" class="form-control" id="RoleName" name="RoleName" placeholder="Role Name">
+        </div>
+        <button type="submit" class="btn btn-default">Create</button>
+    }
+</div>
+<div class="row top-buffer">
+    <table class="table table-striped table-bordered">
+        <tr>
+            <th>
+                Role Name
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @if (item.Name != "Administrator")
+                    {
+
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id }) <span>|</span>
+
+
+                    }
+                     @Html.ActionLink("Manage Users", "Users", new { id = item.Id })
+
+                </td>
+            </tr>
+        }
+
+    </table>
+
+</div>
